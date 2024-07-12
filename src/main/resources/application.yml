@@ -1,0 +1,21 @@
+server:
+  forward-headers-strategy: framework
+  port: ${SERVER_PORT:8080}
+  shutdown: graceful
+
+app:
+  nats-server: ${NATS_URL}
+
+spring:
+  application.name: springboot-nats
+  config:
+    import: optional:file:.env[.properties]
+
+logging:
+  level:
+    org:
+      springframework:
+        web: ${LOG_LEVEL:DEBUG}
+    io:
+      github:
+        rafaeljpc: ${LOG_LEVEL:DEBUG}
